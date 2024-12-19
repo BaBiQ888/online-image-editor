@@ -8,7 +8,10 @@ const loadCrossOriginImage = (src) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => resolve(img);
-    img.onerror = reject;
+    img.onerror = (error) => {
+      console.error('Image load error:', error);
+      reject(error);
+    };
     img.src = src;
   });
 };
@@ -45,7 +48,7 @@ const useImageStore = create(
         error: null,
       },
 
-      // 历史记录
+      // 历史���录
       history: [],
 
       // Actions
@@ -144,17 +147,33 @@ const useImageStore = create(
 
           // 如果有动画，导出 GIF
           if (background.animation && background.animation.type !== 'none') {
-            const result = await createAnimatedGif(processedImage, background.animation, {
-              width: targetWidth,
-              height: targetHeight,
-              duration: background.animation.config?.duration || 2,
-              background,
-              filename: `animated_${Date.now()}.gif`,
-            });
-            return {
-              url: result,
-              filename: `animated_${Date.now()}.gif`,
-            };
+            try {
+              // 构建动画配置
+              const animationConfig = {
+                type: background.animation.type,
+                config: {
+                  duration: background.animation.config?.duration || 2,
+                  amplitude: background.animation.config?.amplitude || 20,
+                  frequency: background.animation.config?.frequency || 1,
+                  ...background.animation.config,
+                },
+              };
+
+              const result = await createAnimatedGif(processedImage, animationConfig, {
+                width: targetWidth,
+                height: targetHeight,
+                duration: animationConfig.config.duration,
+                background,
+                imageSettings,
+              });
+              return {
+                url: result,
+                filename: `animated_${Date.now()}.gif`,
+              };
+            } catch (animationError) {
+              console.error('Animation export failed:', animationError);
+              throw animationError;
+            }
           }
 
           // 创建画布
