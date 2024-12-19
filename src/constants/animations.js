@@ -1,0 +1,98 @@
+export const ANIMATION_PRESETS = [
+  {
+    name: 'none',
+    label: '无动画',
+    description: '不添加任何动画效果',
+    icon: 'block',
+  },
+  {
+    name: 'pulse',
+    label: '脉冲',
+    description: '缓慢的放大缩小效果',
+    icon: 'radio_button_checked',
+    defaultConfig: {
+      duration: 2,
+      timing: 'ease-in-out',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'float',
+    label: '漂浮',
+    description: '轻柔的上下浮动效果',
+    icon: 'vertical_align_center',
+    defaultConfig: {
+      duration: 3,
+      timing: 'ease-in-out',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'shake',
+    label: '抖动',
+    description: '快速的左右抖动效果',
+    icon: 'vibration',
+    defaultConfig: {
+      duration: 0.8,
+      timing: 'ease-in-out',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'rotate',
+    label: '旋转',
+    description: '平滑的旋转动画',
+    icon: 'refresh',
+    defaultConfig: {
+      duration: 3,
+      timing: 'linear',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'bounce',
+    label: '弹跳',
+    description: '有弹性的上下跳动',
+    icon: 'height',
+    defaultConfig: {
+      duration: 1,
+      timing: 'cubic-bezier(0.36, 0, 0.66, -0.56)',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'swing',
+    label: '摆动',
+    description: '钟摆式的左右摆动',
+    icon: 'sync_alt',
+    defaultConfig: {
+      duration: 2,
+      timing: 'ease-in-out',
+      delay: 0,
+      iterationCount: 'infinite',
+    },
+  },
+  {
+    name: 'tada',
+    label: '抖动放大',
+    description: '强调性的缩放抖动',
+    icon: 'center_focus_strong',
+    defaultConfig: {
+      duration: 1,
+      timing: 'ease-in-out',
+      delay: 0,
+      iterationCount: 1,
+    },
+  },
+  {
+    name: 'custom',
+    label: '自定义',
+    description: '自定义动画参数',
+    icon: 'tune',
+  },
+];
