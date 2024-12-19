@@ -96,4 +96,14 @@ MIT License
 
 欢迎提交 Issue 和 Pull Request
 
-## 项目结构
+## 项目结构 
+
+```
+src/
+├── components/
+├── hooks/
+├── pages/
+├── store/
+├── App.jsx
+├── main.jsx
+```
